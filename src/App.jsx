@@ -25,15 +25,9 @@ const socket = io(import.meta.env.VITE_API, {
 function App() {
   const [Visitor, setVisitor] = useState(0);
 
-  useEffect(() => {
-    socket.on("visitor", (count) => {
-      setVisitor(count);
-    });
-
-    return () => {
-      socket.off("visitor");
-    };
-  }, []);
+  socket.on("visitor", (count) => {
+    setVisitor(count);
+  });
 
   const router = createBrowserRouter([
     {
