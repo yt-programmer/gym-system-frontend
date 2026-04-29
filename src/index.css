@@ -1,0 +1,222 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-primary: #0a0a0f;
+  --color-bg-secondary: #12121a;
+  --color-bg-glass: rgba(255, 255, 255, 0.03);
+  --color-border-glass: rgba(255, 255, 255, 0.08);
+
+  --color-neon-cyan: #00f0ff;
+  --color-neon-purple: #b829dd;
+  --color-neon-green: #00ff9d;
+  --color-neon-red: #ff2d55;
+  --color-neon-yellow: #ffd60a;
+
+  --color-text-primary: #f3f4f6;
+  --color-text-secondary: #9ca3af;
+  --color-text-muted: #6b7280;
+
+  --font-sans:
+    "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  --font-mono:
+    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    monospace;
+
+  --animate-shimmer: shimmer 2s infinite linear;
+  --animate-pulse-glow: pulse-glow 2s ease-in-out infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-scan: scan 2.5s linear infinite;
+  --animate-spin-slow: spin 12s linear infinite;
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(0, 240, 255, 0.35);
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(2deg);
+    }
+  }
+
+  @keyframes scan {
+    0% {
+      top: 0%;
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      top: 100%;
+      opacity: 0;
+    }
+  }
+}
+
+/* Global base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  text-align: left;
+  border: none;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: #2e2e3a;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3e3e4a;
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 240, 255, 0.25);
+  color: #fff;
+}
+
+/* Utility classes */
+.glass {
+  background: var(--color-bg-glass);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid var(--color-border-glass);
+}
+
+.glass-strong {
+  background: rgba(18, 18, 26, 0.75);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.neon-border-cyan {
+  box-shadow:
+    0 0 15px rgba(0, 240, 255, 0.15),
+    inset 0 0 15px rgba(0, 240, 255, 0.05);
+  border-color: rgba(0, 240, 255, 0.3);
+}
+
+.neon-border-purple {
+  box-shadow:
+    0 0 15px rgba(184, 41, 221, 0.15),
+    inset 0 0 15px rgba(184, 41, 221, 0.05);
+  border-color: rgba(184, 41, 221, 0.3);
+}
+
+.neon-border-green {
+  box-shadow:
+    0 0 15px rgba(0, 255, 157, 0.15),
+    inset 0 0 15px rgba(0, 255, 157, 0.05);
+  border-color: rgba(0, 255, 157, 0.3);
+}
+
+.neon-text-cyan {
+  text-shadow:
+    0 0 10px rgba(0, 240, 255, 0.5),
+    0 0 40px rgba(0, 240, 255, 0.2);
+}
+
+.neon-text-purple {
+  text-shadow:
+    0 0 10px rgba(184, 41, 221, 0.5),
+    0 0 40px rgba(184, 41, 221, 0.2);
+}
+
+.neon-text-green {
+  text-shadow:
+    0 0 10px rgba(0, 255, 157, 0.5),
+    0 0 40px rgba(0, 255, 157, 0.2);
+}
+
+.text-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--color-neon-cyan),
+    var(--color-neon-purple)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.06),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
