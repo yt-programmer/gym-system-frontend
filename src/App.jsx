@@ -18,6 +18,7 @@ import { RegisterPage } from "./pages/RegisterPage";
 import { io } from "socket.io-client";
 import { useEffect, useState } from "react";
 import RequireAuth from "./components/protect/RequireAuth";
+import ScrollToTop from "./components/ScrollToTop";
 const socket = io("http://localhost:3000", {
   withCredentials: true,
 });
@@ -25,9 +26,15 @@ const socket = io("http://localhost:3000", {
 function App() {
   const [Visitor, setVisitor] = useState(0);
 
-  socket.on("visitor", (count) => {
-    setVisitor(count);
-  });
+  useEffect(() => {
+    socket.on("visitor", (count) => {
+      setVisitor(count);
+    });
+
+    return () => {
+      socket.off("visitor");
+    };
+  }, []);
 
   const router = createBrowserRouter([
     {
@@ -91,9 +98,12 @@ function App() {
   ]);
 
   return (
-    <AnimatePresence mode="wait">
-      <RouterProvider router={router} />
-    </AnimatePresence>
+    <>
+      <ScrollToTop />
+      <AnimatePresence mode="wait">
+        <RouterProvider router={router} />
+      </AnimatePresence>
+    </>
   );
 }
 
