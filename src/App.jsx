@@ -18,7 +18,7 @@ import { RegisterPage } from "./pages/RegisterPage";
 import { io } from "socket.io-client";
 import { useEffect, useState } from "react";
 import RequireAuth from "./components/protect/RequireAuth";
-const socket = io("http://localhost:3000", {
+const socket = io(import.meta.env.VITE_API, {
   withCredentials: true,
 });
 
