@@ -63,7 +63,7 @@ function App() {
           ),
         },
         {
-          path: "/checkcard",
+          path: "/checkcard/:token",
           element: <CheckCardPage />,
         },
         {
