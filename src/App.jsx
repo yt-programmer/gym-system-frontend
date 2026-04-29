@@ -18,16 +18,16 @@ import { RegisterPage } from "./pages/RegisterPage";
 import { io } from "socket.io-client";
 import { useEffect, useState } from "react";
 import RequireAuth from "./components/protect/RequireAuth";
-const socket = io(import.meta.env.VITE_API, {
-  withCredentials: true,
-});
+// const socket = io(import.meta.env.VITE_API, {
+//   withCredentials: true,
+// });
 
 function App() {
   const [Visitor, setVisitor] = useState(0);
 
-  socket.on("visitor", (count) => {
-    setVisitor(count);
-  });
+  // socket.on("visitor", (count) => {
+  //   setVisitor(count);
+  // });
 
   const router = createBrowserRouter([
     {
